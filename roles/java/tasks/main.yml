@@ -17,14 +17,14 @@
   when: jdk_distr_type == 'remote'
 - name: Ensure installation dir exists
   become: true
-  become_user: centos
+  become_method: su
   file:
     state: directory
     path: "{{ java_home }}"
     mode: 0755
 - name: Extract java in the installation directory
   become: true
-  become_user: centos
+  become_method: su
   unarchive:
     copy: false
     src: "/tmp/jdk-{{ jdk_distr_name }}"
