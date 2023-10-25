@@ -16,17 +16,13 @@
   until: download_java_remote_binaries is succeeded
   when: jdk_distr_type == 'remote'
 - name: Ensure installation dir exists
-  become: yes
-  become_method: su
-  become_user: sudo
+  become: true
   file:
     state: directory
     path: "{{ java_home }}"
     mode: 0755
 - name: Extract java in the installation directory
-  become: yes
-  become_method: su
-  become_user: sudo
+  become: true
   unarchive:
     copy: false
     src: "/tmp/jdk-{{ jdk_distr_name }}"
